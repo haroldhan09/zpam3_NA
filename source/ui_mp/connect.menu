@@ -105,6 +105,18 @@
 			textalign		ITEM_ALIGN_CENTER
 			decoration
 		}
+		itemDef
+		{
+			visible			1
+			origin			447 41
+			forecolor		1 1 1 0.8
+			text			"This is a forked version of PAM designed for North American region"
+			textfont		UI_FONT_NORMAL
+			textscale		0.2
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
 
 /*
 		itemDef
