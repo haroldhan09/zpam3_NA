@@ -313,6 +313,10 @@ CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath
 		eAttacker.pers["antilagTimeOffset"] = timeOffset;
 	}
 
+	// neck shots count as heads
+	if (sHitLoc == "neck") {
+		sHitLoc = "head";
+	}
 
 	// Protection - players in spectator inflict damage
 	if(isDefined(eAttacker) && isPlayer(eAttacker) && eAttacker.sessionteam == "spectator")
@@ -327,7 +331,6 @@ CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath
 		return;
 
 	damageFeedback = 1;
-
 
 	// Save info about hits
 	self_num = self getEntityNumber();
@@ -356,8 +359,6 @@ CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath
 		self thread hitDataAutoRestart(eAttacker, self_num);
 		eAttacker thread hitIdAutoRestart();
 	}
-
-
 
 	// 1 = print debug messages to player with name eyza
 	eyza_debug = 0;
@@ -388,13 +389,13 @@ CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath
 		if (level.debug_handhitbox || applyFix)
 		{
 			// Define box around head tag tag will be used to determine, if hit location is inside this box and it should be a kill
-			boxBack = 8;		//	 _________				//	 _________
-			boxFront = 30;		//	|  -[]-	 |	       Back		//	|  _[]_	 |	       Top
+			boxBack = 8;		//	 _________						//	 _________
+			boxFront = 30;		//	|  -[]-	 |	       Back			//	|  _[]_	 |	       Top
 			boxLeft = 9;		//	|   |	 |	Left  [Head]  Right	//	| || ||	 |	Left  [Head]  Right
-			boxRight = 9;		//	|	 |	      Front		//	|__| |___|	      Down
-			boxUp = 8;		//	|________|	        ^		//	   ||
-			boxDown = 14;		//	Top view	      Enemy		//	Front view
-			if (self.isMoving) // if player is moving, make the box bigger so it will compensate poor hitboxes
+			boxRight = 9;		//	|	 	 |	      Front			//	|__| |___|	      Down
+			boxUp = 8;			//	|________|	        ^			//	   ||
+			boxDown = 14;		//	Top view	      Enemy			//	Front view
+			if (self.isMoving) 	// if player is moving, make the box bigger so it will compensate poor hitboxes
 			{
 				boxLeft = 11;
 				boxRight = 11;
