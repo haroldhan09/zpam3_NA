@@ -1,0 +1,6 @@
+{
+	map		"mp_trainstation_fix"
+	longname	"Trainstation FIX"
+	gametype	"dm tdm sd hq ctf htf strat"
+}
+

@@ -586,8 +586,8 @@ CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath
 			damageFeedback = 0;
 
 
-		// Range 0-250   (1 pellet needed for kill)
-		if (dist <= 250)
+		// Range 0-275   (1 pellet needed for kill)
+		if (dist <= 275)
 		{
 			isKill = true;
 
@@ -624,7 +624,7 @@ CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath
 			}
 		}
 
-		// Range 250-384   (2 pellets needed for kill)
+		// Range 275-384   (2 pellets needed for kill)
 		else if (dist <= 384)
 		{
 			// Scale the damage based on distance
