@@ -6,11 +6,11 @@ main()
 
 	maps\mp\_load::main();
 
-	game["allies"] = "american";
+	game["allies"] = "british";
 	game["axis"] = "german";
 	game["attackers"] = "allies";
 	game["defenders"] = "axis";
-	game["american_soldiertype"] = "normandy";
+	game["british_soldiertype"] = "normandy";
 	game["german_soldiertype"] = "normandy";
 
 	setcvar("r_glowbloomintensity0","1");
