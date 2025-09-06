@@ -1,0 +1,5 @@
+{
+	map		"mp_trainstation_bhg"
+	longname	"Trainstation BHG"
+	gametype	"dm tdm sd hq ctf htf strat"
+}

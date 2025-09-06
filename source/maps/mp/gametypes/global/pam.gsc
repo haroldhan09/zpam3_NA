@@ -112,7 +112,7 @@ switchMapToFixVersion()
 	else if (level.mapname == "mp_dawnville") map = "mp_dawnville_fix";
 	else if (level.mapname == "mp_matmata") map = "mp_matmata_fix";
 	else if (level.mapname == "mp_carentan") map = "mp_carentan_fix";
-	else if (level.mapname == "mp_trainstation") map = "mp_trainstation_fix";
+	else if (level.mapname == "mp_trainstation") map = "mp_trainstation_bhg";
 	if (map != "")
 		map(map, false);
 }
@@ -234,6 +234,7 @@ CheckInstallation()
 		maps[maps.size] = "mp_carentan_fix";
 		maps[maps.size] = "mp_chelm_fix";
 		maps[maps.size] = "mp_breakout_tls";
+		maps[maps.size] = "mp_trainstation_bhg";
 		maps[maps.size] = "mp_dawnville_sun";
 		maps[maps.size] = "mp_leningrad_tls";
 		maps[maps.size] = "mp_vallente_fix";
@@ -301,11 +302,14 @@ CheckInstallation()
 	blackList[blackList.size] = "zpam_maps_v4_beta1";
 	blackList[blackList.size] = "zpam_maps_v4_beta2";
 	blackList[blackList.size] = "zpam_maps_v4";
+	blackList[blackList.size] = "zpam_maps_v4_na";
 	blackList[blackList.size] = "zpam334_test1";
 	blackList[blackList.size] = "zpam334_test2";
 	blackList[blackList.size] = "zpam334_beta1";
 	blackList[blackList.size] = "zpam334_beta2";
 	blackList[blackList.size] = "zpam334";
+	blackList[blackList.size] = "zpam334_na";
+	blackList[blackList.size] = "zpam335";
 
 	blackList[blackList.size] = "mp_chelm_fix";
 	blackList[blackList.size] = "mp_breakout_tls";

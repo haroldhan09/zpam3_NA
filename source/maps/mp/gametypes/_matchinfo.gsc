@@ -476,7 +476,7 @@ GetMapName(mapname)
 	if (mapname == "mp_dawnville" || mapname == "mp_dawnville_fix")		return "Dawnville";
 	if (mapname == "mp_matmata" || mapname == "mp_matmata_fix")		return "Matmata";
 	if (mapname == "mp_carentan" || mapname == "mp_carentan_fix")		return "Carentan";
-	if (mapname == "mp_trainstation" || mapname == "mp_trainstation_fix")		return "Trainstation";
+	if (mapname == "mp_trainstation" || mapname == "mp_trainstation_bhg" || mapname == "mp_trainstation_fix")		return "Trainstation";
 	if (mapname == "mp_breakout_tls")					return "Breakout TLS";
 	if (mapname == "mp_chelm_fix")						return "Chelm";
 	if (mapname == "mp_leningrad_tls")					return "Leningrad TLS";
