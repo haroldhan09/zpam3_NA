@@ -625,8 +625,8 @@ CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath
 			}
 		}
 
-		// Range 275-425   (2 pellets needed for kill)
-		else if (dist <= 425)
+		// Range 275-384   (2 pellets needed for kill)
+		else if (dist <= 384)
 		{
 			// Scale the damage based on distance
 			iDamage = damageScale(dist, 250, 384, 100, 50); //distance, distStart, distEnd, hpStart, hpEnd
@@ -636,7 +636,7 @@ CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath
 			eAttacker.hitData[self_num].adjustedBy = "consistent_shotgun_2"; // Range 2
 		}
 
-		// Range 425-500   (3 pellets needed for kill)
+		// Range 384-500   (3 pellets needed for kill)
 		else if (dist <= 500)
 		{
 			// Scale the damage based on distance
