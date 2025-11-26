@@ -1,0 +1,5 @@
+{
+	map			"mp_chelm_fix"
+	longname	"Chelm FIX"
+	gametype	"dm tdm sd ctf hq strat"
+}
