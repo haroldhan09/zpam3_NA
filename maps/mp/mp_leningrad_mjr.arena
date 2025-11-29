@@ -1,0 +1,5 @@
+{
+	map "mp_leningrad_mjr" 
+	longname "Leningrad MJR"
+	gametype "dm tdm sd hq ctf strat re htf" 
+}

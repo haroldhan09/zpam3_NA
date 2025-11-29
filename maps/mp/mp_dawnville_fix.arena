@@ -1,0 +1,5 @@
+{
+	map		"mp_dawnville_fix"
+	longname	"Dawnville FIX"
+	gametype	"dm tdm sd hq ctf htf strat"
+}

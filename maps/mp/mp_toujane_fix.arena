@@ -1,0 +1,6 @@
+{
+	map		"mp_toujane_fix"
+	longname	"Toujane FIX"
+	gametype	"dm tdm sd hq ctf htf strat"
+}
+

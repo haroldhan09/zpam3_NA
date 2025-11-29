@@ -1,0 +1,5 @@
+{
+	map		"mp_matmata_fix"
+	longname	"Matmata FIX"
+	gametype	"dm tdm sd hq ctf htf strat"
+}
