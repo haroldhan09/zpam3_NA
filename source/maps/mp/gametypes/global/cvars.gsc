@@ -104,6 +104,7 @@ Register_Shared_Cvars()
 	[[sVar]]("scr_remove_killtriggers", "BOOL", 0); 	        // level.scr_remove_killtriggers - remove some of the killtriggers created by infinityward where kill is not needed (like toujane jump on middle building,...)
 	[[sVar]]("scr_replace_russian", "BOOL", 0);              // level.scr_replace_russian  (can be changed only at start of the game, in progress it will mess up britsh/russians scripts...)
 	[[sVar]]("scr_friendlyfire", "INT", 0, 0, 3); 	// level.scr_friendlyfire on, off, reflect, shared
+	//[[sVar]]("scr_breakout_british", "BOOL", 1);	// level.scr_breakout_british (can be changed only at start of the game, in progress will mess up faction scripts...)
 
 	[[sVarEx]]("", "scr_posters", "BOOL", 0);              // level.scr_posters, ignore change
 
@@ -197,6 +198,13 @@ onCvarChanged(cvar, value, isRegisterTime)
 		case "scr_friendlyfire": 		level.scr_friendlyfire = value; return true;
 		case "scr_replace_russian": 		
 			level.scr_replace_russian = value; 
+			if (!isRegisterTime) {
+				level thread restartMap();
+			}
+			return true;
+		
+		case "scr_breakout_british":
+			level.scr_breakout_british = value;
 			if (!isRegisterTime) {
 				level thread restartMap();
 			}
