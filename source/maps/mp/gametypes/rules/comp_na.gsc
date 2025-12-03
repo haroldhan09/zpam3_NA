@@ -15,5 +15,5 @@ GetCvars(arr)
     arr = ruleCvarDefault(arr, "scr_bar_buffed", 1);    // BAR buff
     arr = ruleCvarDefault(arr, "scr_bren_buffed", 1);   // Bren LMG buff
 
-	return arr;
+	  return arr;
 }
