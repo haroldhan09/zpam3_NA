@@ -59,6 +59,8 @@ To see description of previous versions, click on the links in [Version list](#v
 - `scr_breakout_britis 0/1` - CVAR that toggles between British and American on the allied faction of Breakout_TLS.
 - Added `mp_trainstation_bhg` to RCON menu and map pack.
 
+</p>
+</details>
 
 <details><summary>zPAM 4.04 changes (click to open)</summary>
 <p>
