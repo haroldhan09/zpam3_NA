@@ -6,12 +6,22 @@ main()
 
 	maps\mp\_load::main();
 
-	game["allies"] = "british";
-	game["axis"] = "german";
-	game["attackers"] = "allies";
-	game["defenders"] = "axis";
-	game["british_soldiertype"] = "normandy";
-	game["german_soldiertype"] = "normandy";
+	if (level.scr_breakout_british) {
+		game["allies"] = "british";
+		game["axis"] = "german";
+		game["attackers"] = "allies";
+		game["defenders"] = "axis";
+		game["british_soldiertype"] = "normandy";
+		game["german_soldiertype"] = "normandy";
+	}
+	else {
+		game["allies"] = "american";
+		game["axis"] = "german";
+		game["attackers"] = "allies";
+		game["defenders"] = "axis";
+		game["american_soldiertype"] = "normandy";
+		game["german_soldiertype"] = "normandy";
+	}
 
 	setcvar("r_glowbloomintensity0","1");
 	setcvar("r_glowbloomintensity1","1");

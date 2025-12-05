@@ -224,11 +224,23 @@ onCvarChanged(cvar, value, isRegisterTime)
 
 		case "scr_smoke_type":
 			level.scr_smoke_type = value;
+			if (!isRegisterTime) {
+				level thread restartMap();
+			}
 			return true;
 	}
 
-
 	return false;
+}
+
+restartMap()
+{
+	if (!maps\mp\gametypes\_matchinfo::canMapBeChanged())
+		return;
+		
+	iprintln("Restarting map...");
+	wait level.fps_multiplier * 2;
+	map(level.mapname, false);
 }
 
 
