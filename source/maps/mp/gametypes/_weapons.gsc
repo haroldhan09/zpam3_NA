@@ -7,8 +7,6 @@ init()
 	registerCvars();
 
 	addEventListener("onStartGameType", ::onStartGameType);
-
-	level.scr_smoke_fix = true;
 }
 
 // Called from start_gametype when registring cvars
@@ -78,11 +76,9 @@ registerCvars()
 	[[var]]("scr_allow_shotgun", "BOOL", 1);
 
 
-
 	// Allow grenade / smoke drop when player die
 	[[var]]("scr_allow_grenade_drop", "BOOL", 1); 	// level.allow_nadedrops
 	[[var]]("scr_allow_smoke_drop", "BOOL", 1); 	// level.allow_smokedrops
-
 
 
 	[[var]]("scr_allow_pistols", "BOOL", 1); 	// level.allow_pistols // NOTE: in sd next round
@@ -101,6 +97,8 @@ registerCvars()
 
 	[[var]]("scr_bar_buffed", "BOOL", 0);		// level.scr_bar_buffed
 	[[var]]("scr_bren_buffed", "BOOL", 0);		// level.scr_bren_buffed
+
+	[[var]]("scr_smoke_type", "INT", 0, 0, 2);	// level.scr_smoke_type
 }
 
 
@@ -162,8 +160,6 @@ onCvarChanged(cvar, value, isRegisterTime)
 		case "scr_pistol_allow_drop":
 			return true;
 
-
-
 		// If some wepaons was enabled/disabled
 		case "scr_allow_greasegun":
 		case "scr_allow_m1carbine":
@@ -191,18 +187,11 @@ onCvarChanged(cvar, value, isRegisterTime)
 			if (!isRegisterTime) thread updateAllowed(cvar, value);
 		return true;
 
-
-
 		case "scr_allow_grenade_drop": 		level.allow_nadedrops = value; return true;
-        	case "scr_allow_smoke_drop": 		level.allow_smokedrops = value; return true;
-
-
-
-
+		case "scr_allow_smoke_drop": 		level.allow_smokedrops = value; return true;
 
 		case "scr_allow_pistols": 		level.allow_pistols = value; return true;
 		case "scr_allow_turrets": 		level.allow_turrets = value; return true;
-
 
 		case "scr_no_oneshot_pistol_kills": 		level.prevent_single_shot_pistol = value; return true;
 		case "scr_no_oneshot_ppsh_kills": 		level.prevent_single_shot_ppsh = value; return true;
@@ -232,6 +221,10 @@ onCvarChanged(cvar, value, isRegisterTime)
 		case "scr_bren_buffed":
 			level.scr_bren_buffed = value;
 			return true;
+
+		case "scr_smoke_type":
+			level.scr_smoke_type = value;
+			return true;
 	}
 
 
@@ -244,7 +237,7 @@ onCvarChanged(cvar, value, isRegisterTime)
 // Called again for every round in round-based gameplay
 onStartGameType()
 {
-	if(game["firstInit"])
+	if (game["firstInit"])
 	{
 		if(level.scr_rifle_mode)
 			precacheWeaponsRifle();
@@ -271,26 +264,32 @@ precacheWeaponsRifle()
 {
 	switch(game["allies"])
 	{
-	case "american":
+		case "american":
+			precacheItem("frag_grenade_american_mp");
+			if (level.scr_smoke_type == 2)
+				precacheItem("c_smoke_grenade_american_mp");
+			else
+				precacheItem("smoke_grenade_american_mp");
+			precacheItem("colt_mp");
+			break;
 
-		precacheItem("frag_grenade_american_mp");
-		precacheItem("smoke_grenade_american_mp");
-		precacheItem("colt_mp");
-		break;
+		case "british":
+			precacheItem("frag_grenade_british_mp");
+			if (level.scr_smoke_type == 2)
+				precacheItem("c_smoke_grenade_british_mp");
+			else
+				precacheItem("smoke_grenade_british_mp");
+			precacheItem("webley_mp");
+			break;
 
-	case "british":
-
-		precacheItem("frag_grenade_british_mp");
-		precacheItem("smoke_grenade_british_mp");
-		precacheItem("webley_mp");
-		break;
-
-	case "russian":
-
-		precacheItem("frag_grenade_russian_mp");
-		precacheItem("smoke_grenade_russian_mp");
-		precacheItem("TT30_mp");
-		break;
+		case "russian":
+			precacheItem("frag_grenade_russian_mp");
+			if (level.scr_smoke_type == 2)
+				precacheItem("c_smoke_grenade_russian_mp");
+			else
+				precacheItem("smoke_grenade_russian_mp");
+			precacheItem("TT30_mp");
+			break;
 	}
 
 	precacheItem("kar98k_mp");
@@ -302,14 +301,16 @@ precacheWeaponsRifle()
 	precacheItem("springfield_mp");
 
 	precacheItem("frag_grenade_german_mp");
-	precacheItem("smoke_grenade_german_mp");
+
+	if (level.scr_smoke_type == 2)
+		precacheItem("c_smoke_grenade_german_mp");
+	else
+		precacheItem("smoke_grenade_german_mp");
 
 	precacheItem("luger_mp");
 
-
 	// Weapons for all
 	precacheItem("binoculars_mp");
-
 }
 
 precacheWeapons()
@@ -320,89 +321,99 @@ precacheWeapons()
 
 	switch(game["allies"])
 	{
-	case "american":
+		case "american":
+			if (level.scr_smoke_type == 0) // thin smoke
+			{
+				precacheItem("frag_grenade_american_mp");
+				precacheItem("smoke_grenade_american_mp");
+			}
 
-		if (level.scr_smoke_fix == false) // old way
-		{
-			precacheItem("frag_grenade_american_mp");
-			precacheItem("smoke_grenade_american_mp");
-		}
+			precacheItem("greasegun_mp");
+			precacheItem("m1carbine_mp");
+			precacheItem("m1garand_mp");
+			precacheItem("springfield_mp");
+			//precacheItem("shotgun_mp");
+			precacheItem("thompson_mp");
+			precacheItem("bar_mp");
+			precacheItem("bar_buffed_mp");
 
-		precacheItem("greasegun_mp");
-		precacheItem("m1carbine_mp");
-		precacheItem("m1garand_mp");
-		precacheItem("springfield_mp");
-		//precacheItem("shotgun_mp");
-		precacheItem("thompson_mp");
-		precacheItem("bar_mp");
-		precacheItem("bar_buffed_mp");
+			if (level.scr_smoke_type == 1) // thick smoke
+			{
+				precacheItem("frag_grenade_american_mp");
+				precacheItem("smoke_grenade_american_mp");
+			}
+			else if (level.scr_smoke_type == 2) // consistent smoke
+			{
+				precacheItem("frag_grenade_american_mp");
+				precacheItem("c_smoke_grenade_american_mp");
+			}
 
-		if (level.scr_smoke_fix) // new way
-		{
-			precacheItem("frag_grenade_american_mp");
-			precacheItem("smoke_grenade_american_mp");
-		}
+			precacheItem("colt_mp");
+			break;
 
-		precacheItem("colt_mp");
+		case "british":
+			if (level.scr_smoke_type == 0) // thin smoke
+			{
+				precacheItem("frag_grenade_british_mp");
+				precacheItem("smoke_grenade_british_mp");
+			}
 
-		break;
+			precacheItem("sten_mp");
+			precacheItem("enfield_mp");
+			precacheItem("m1garand_mp");
+			precacheItem("enfield_scope_mp");
+			//precacheItem("shotgun_mp");
+			precacheItem("thompson_mp");
+			precacheItem("bren_mp");
+			precacheItem("bren_buffed_mp");
 
-	case "british":
+			if (level.scr_smoke_type == 1) // thick smoke
+			{
+				precacheItem("frag_grenade_british_mp");
+				precacheItem("smoke_grenade_british_mp");
+			}
+			else if (level.scr_smoke_type == 2) // consistent smoke
+			{
+				precacheItem("frag_grenade_british_mp");
+				precacheItem("c_smoke_grenade_british_mp");
+			}
 
-		if (level.scr_smoke_fix == false) // old way
-		{
-			precacheItem("frag_grenade_british_mp");
-			precacheItem("smoke_grenade_british_mp");
-		}
+			precacheItem("webley_mp");
+			break;
 
-		precacheItem("sten_mp");
-		precacheItem("enfield_mp");
-		precacheItem("m1garand_mp");
-		precacheItem("enfield_scope_mp");
-		//precacheItem("shotgun_mp");
-		precacheItem("thompson_mp");
-		precacheItem("bren_mp");
-		precacheItem("bren_buffed_mp");
+		case "russian":
 
-		if (level.scr_smoke_fix) // new way
-		{
-			precacheItem("frag_grenade_british_mp");
-			precacheItem("smoke_grenade_british_mp");
-		}
+			if (level.scr_smoke_type == 0) // thin smoke
+			{
+				precacheItem("frag_grenade_russian_mp");
+				precacheItem("smoke_grenade_russian_mp");
+			}
 
-		precacheItem("webley_mp");
+			precacheItem("PPS42_mp");
+			precacheItem("mosin_nagant_mp");
+			precacheItem("SVT40_mp");
+			precacheItem("mosin_nagant_sniper_mp");
+			//precacheItem("shotgun_mp");
+			//precacheItem("ppsh_mp"); PPSH_CHANGE
+			precacheItem("ppsh_stick30_mp");
 
-		break;
+			if (level.scr_smoke_type == 1) // thick smoke
+			{
+				precacheItem("frag_grenade_russian_mp");
+				precacheItem("smoke_grenade_russian_mp");
+			}
+			else if (level.scr_smoke_type == 2) // consistent smoke
+			{
+				precacheItem("frag_grenade_russian_mp");
+				precacheItem("c_smoke_grenade_russian_mp");
+			}
 
-	case "russian":
-
-		if (level.scr_smoke_fix == false) // old way
-		{
-			precacheItem("frag_grenade_russian_mp");
-			precacheItem("smoke_grenade_russian_mp");
-		}
-
-		precacheItem("PPS42_mp");
-		precacheItem("mosin_nagant_mp");
-		precacheItem("SVT40_mp");
-		precacheItem("mosin_nagant_sniper_mp");
-		//precacheItem("shotgun_mp");
-		//precacheItem("ppsh_mp"); PPSH_CHANGE
-		precacheItem("ppsh_stick30_mp");
-
-		if (level.scr_smoke_fix) // new way
-		{
-			precacheItem("frag_grenade_russian_mp");
-			precacheItem("smoke_grenade_russian_mp");
-		}
-
-		precacheItem("TT30_mp");
-
-		break;
+			precacheItem("TT30_mp");
+			break;
 	}
 
 	// German weapons
-	if (level.scr_smoke_fix == false) // old way
+	if (level.scr_smoke_type == 0) // thin smoke
 	{
 		precacheItem("frag_grenade_german_mp");
 		precacheItem("smoke_grenade_german_mp");
@@ -416,15 +427,18 @@ precacheWeapons()
 	precacheItem("mp44_mp");
 	precacheItem("fg42_mp");
 
-	if (level.scr_smoke_fix) // new way
+	if (level.scr_smoke_type == 1) // thick smoke
 	{
 		precacheItem("frag_grenade_german_mp");
 		precacheItem("smoke_grenade_german_mp");
 	}
+	else if (level.scr_smoke_type == 2) // consistent smoke
+	{
+		precacheItem("frag_grenade_german_mp");
+		precacheItem("c_smoke_grenade_german_mp");
+	}
 
 	precacheItem("luger_mp");
-
-	
 
 	// Weapons for all
 	precacheItem("shotgun_mp");
@@ -655,11 +669,16 @@ GetGrenadeTypeName()
 
 GetSmokeTypeName()
 {
+	smokePrefix = "smoke_grenade_";
+	if (level.scr_smoke_type == 2)
+		smokePrefix = "c_smoke_grenade_";
+
 	grenadetype = "none";
+
 	if(self.pers["team"] == "allies")
-		grenadetype = "smoke_grenade_" + game["allies"] + "_mp";
+		grenadetype = smokePrefix + game["allies"] + "_mp";
 	else if (self.pers["team"] == "axis")
-		grenadetype = "smoke_grenade_" + game["axis"] + "_mp";
+		grenadetype = smokePrefix + game["axis"] + "_mp";
 
 	return grenadetype;
 }
@@ -693,15 +712,23 @@ giveGrenadesFor(weapon, count)
 giveSmokesFor(weapon, count)
 {
 	// remove all smokes
-	self takeWeapon("smoke_grenade_american_mp");
-	self takeWeapon("smoke_grenade_british_mp");
-	self takeWeapon("smoke_grenade_russian_mp");
-	self takeWeapon("smoke_grenade_german_mp");
-
+	if (level.scr_smoke_type == 2) {
+		self takeWeapon("c_smoke_grenade_american_mp");
+		self takeWeapon("c_smoke_grenade_british_mp");
+		self takeWeapon("c_smoke_grenade_russian_mp");
+		self takeWeapon("c_smoke_grenade_german_mp");
+	}
+	else {
+		self takeWeapon("smoke_grenade_american_mp");
+		self takeWeapon("smoke_grenade_british_mp");
+		self takeWeapon("smoke_grenade_russian_mp");
+		self takeWeapon("smoke_grenade_german_mp");
+	}
+	
 	smokegrenadetype = self GetSmokeTypeName();
 	smokegrenadecount = getWeaponBasedSmokeGrenadeCount(weapon);
 
-	if(smokegrenadecount > 0)
+	if (smokegrenadecount > 0)
 	{
 		if (isDefined(count)) // replace count with own number
 			smokegrenadecount = count;
@@ -711,6 +738,7 @@ giveSmokesFor(weapon, count)
 
 		return smokegrenadecount;
 	}
+
 	return 0;
 }
 
@@ -914,6 +942,10 @@ getSmokeGrenadeCount()
 	count += self getammocount("smoke_grenade_british_mp");
 	count += self getammocount("smoke_grenade_russian_mp");
 	count += self getammocount("smoke_grenade_german_mp");
+	count += self getammocount("c_smoke_grenade_american_mp");
+	count += self getammocount("c_smoke_grenade_british_mp");
+	count += self getammocount("c_smoke_grenade_russian_mp");
+	count += self getammocount("c_smoke_grenade_german_mp");
 	return count;
 }
 
