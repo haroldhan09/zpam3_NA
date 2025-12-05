@@ -1,6 +1,0 @@
-{
-	map		"mp_leningrad_tls"
-	longname	"Leningrad TLS"
-	gametype	"dm tdm ctf hq sd strat"
-}
-

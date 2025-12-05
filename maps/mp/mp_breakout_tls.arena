@@ -1,6 +1,0 @@
-{
-	map		"mp_breakout_tls"
-	longname	"Breakout TLS"
-	gametype	"dm tdm sd hq ctf"
-}
-

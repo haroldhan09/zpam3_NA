@@ -1,5 +1,0 @@
-{
-	map	"mp_crossroads"
-	longname "Crossroads"
-	gametype	"dm tdm sd hq ctf htf strat"
-}
