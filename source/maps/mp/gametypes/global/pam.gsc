@@ -241,6 +241,7 @@ CheckInstallation()
 		maps[maps.size] = "mp_leningrad_tls";
 		maps[maps.size] = "mp_vallente_fix";
 		maps[maps.size] = "mp_trainstation_fix";
+		maps[maps.size] = "mp_trainstation_bhg";
 		maps[maps.size] = "mp_carentan_bal";
 		maps[maps.size] = "mp_railyard_mjr";
 		maps[maps.size] = "mp_leningrad_mjr";

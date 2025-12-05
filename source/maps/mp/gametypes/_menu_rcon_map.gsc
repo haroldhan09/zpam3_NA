@@ -30,6 +30,7 @@ init()
 	map["mp_dawnville_sun"] = true;
 	map["mp_leningrad_tls"] = true;
 	map["mp_trainstation_fix"] = true;
+	map["mp_trainstation_bhg"] = true;
 	map["mp_vallente_fix"] = true;
 	map["mp_carentan_bal"] = true;
 	map["mp_railyard_mjr"] = true;

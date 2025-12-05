@@ -27,8 +27,9 @@
 #		    Dawnville SUN		mp_dawnville_sun	by Fjozek, craven
 #		    Crossroads		    mp_crossroads		by Fjozek, craven, eyza
 #		    Carentan BALANCED	mp_carentan_bal		by Fjozek, craven
-#		    Railyard MJR v4		mp_railyard_mj				by UnaRkW, eyza, craven
-#		    Leningrad MJR v4		mp_leningrad_mjr				by everestt, eyza, craven
+#		    Railyard MJR v4		mp_railyard_mjr				by UnaRkW, eyza, craven
+#		    Leningrad MJR v4		mp_leningrad_mjr		by everestt, eyza, craven
+            Trainstation BHG    mp_trainstation_bhg         by harry, athn, everestt
 #
 # Discord:	    eyza:		eyza_		(eyza#7930)
 #		    Fjozek:		fjozek		(Fjozek#0625)
