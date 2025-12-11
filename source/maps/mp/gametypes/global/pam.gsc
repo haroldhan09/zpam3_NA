@@ -42,8 +42,8 @@ init()
 	}
 
 
-	level.pam_folder = "main/zpam405_na"; // ZPAM_RENAME
-	level.pam_map_iwd = "zpam_maps_v7_na";
+	level.pam_folder = "main/zpam405"; // ZPAM_RENAME
+	level.pam_map_iwd = "zpam_maps_v7";
 
 	level.pam_mode_change = false;
 

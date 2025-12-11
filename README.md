@@ -50,13 +50,13 @@ To see description of previous versions, click on the links in [Version list](#v
 <details><summary>zPAM 4.05 changes (click to open)</summary>
 <p>
 
-**Changes / Fixes / Improvements:**
+**Changes:**
 - Added `comp_na` PAM mode ruleset for the North American region.
-- `scr_hitbox_neck_kills 0/1` - CVAR that will convert all neck shots to head shots if set to 1.
-- `scr_smoke_type 0/1/2` - CVAR that will change the smoke bloom type. 0 being thin original smoke. 1 being the smoke fix (thick smoke). 2 being a new consistent smoke.
-- `scr_bar_buffed 0/1` - CVAR that enables the buffed BAR. Bar simply has faster reload and fire rate.
-- `scr_bren_buffed 0/1` - CVAR that enables the buffed Bren LMG. Bren LMG simply has faster reload.
-- `scr_breakout_britis 0/1` - CVAR that toggles between British and American on the allied faction of Breakout_TLS.
+- `scr_hitbox_neck_kills 0/1` - CVAR that will convert all neck shots to head shots.
+- `scr_smoke_type 0/1/2` - CVAR that will change the smoke bloom type. 0 being thin original smoke. 1 being the smoke fix (thick smoke). 2 being a new consistent smoke modeled after thick smoke.
+- `scr_bar_buffed 0/1` - CVAR that enables the buffed BAR. Bar has faster reload and fire rate.
+- `scr_bren_buffed 0/1` - CVAR thaat enables the buffed Bren LMG. Bren LMG has faster reload.
+- `scr_breakout_british 0/1` - CVAR that toggles between British and American on the allied faction of Breakout_TLS.
 - Added `mp_trainstation_bhg` to RCON menu and map pack.
 
 </p>
