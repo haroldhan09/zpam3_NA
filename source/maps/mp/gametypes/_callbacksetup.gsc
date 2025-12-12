@@ -406,10 +406,6 @@ CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath
 	if (level.scr_hitbox_neck_kill && sHitLoc == "neck") {
 		sHitLoc = "head";
 		iDamage = getAdjustedNeckDamage(sWeapon, iDamage);
-
-		if (level.g_debugDamage) {
-			eAttacker iprintln("Neck converted to Head -- Damage: " + iDamage);
-		}
 	}
 
 	// Hitbox left and right hand fix
